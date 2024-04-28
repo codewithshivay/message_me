@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function() {
     $(".message .close").on("click", function () {
       $(this).closest(".message").transition("fade");
     });
+    submit_message();
     scroll_bottom();
 })
 
@@ -34,3 +35,12 @@ function scroll_bottom() {
     messagesContainer.scrollTop(messagesContainer[0].scrollHeight);
   }
 }
+
+var submit_message = function () {
+  $("#message_body").on("keydown", function (e) {
+    if (e.keyCode == 13) {
+      $("button").click(); // Simulate button click to submit message
+      e.target.value = ""; // Clear input field after submitting
+    }
+  });
+};
