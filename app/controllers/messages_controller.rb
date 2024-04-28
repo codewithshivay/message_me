@@ -1,11 +1,11 @@
 class MessagesController < ApplicationController
-    
+
   before_action :require_user
 
   def create
     message = current_user.messages.build(message_params)
     if message.save
-      redirect_to root_path
+      ActionCable.server.broadcast "chatroom_channel", username: message.user.username, message: message.body
     end
   end
 

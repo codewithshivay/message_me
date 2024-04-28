@@ -18,9 +18,19 @@ require("channels")
 
 import "@doabit/semantic-ui-sass"
 
+
 $(document).on('turbolinks:load', function() {
     $(".ui.dropdown").dropdown();
     $(".message .close").on("click", function () {
       $(this).closest(".message").transition("fade");
     });
+    scroll_bottom();
 })
+
+// Define the scroll_bottom function
+function scroll_bottom() {
+  var messagesContainer = $("#messages");
+  if (messagesContainer.length > 0) {
+    messagesContainer.scrollTop(messagesContainer[0].scrollHeight);
+  }
+}
